@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Gerekli paketleri kur
+      - name: Gerekli sistem paketlerini kur
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
@@ -17,7 +17,8 @@ jobs:
 
       - name: Buildozer ile derle
         run: |
-          # Android SDK ve NDK'yı hazırlıyoruz
+          # Detaylı hata günlüğü için verbosity=2
+          export BUILDOZER_VERBOSITY=2
           buildozer android debug
 
       - name: APK'yı Yükle
